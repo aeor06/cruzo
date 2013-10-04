@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/tableLayout.css" rel="stylesheet" type="text/css" />
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+        <div id="conteiner">
+            <div id="top" class="ui-widget-header ui-corner-all">
+                <ui:insert name="top">Top</ui:insert>
+            </div>
+            <div id="menu" >
+                <h:form> 
+
+                    <p:growl id="messages"/>  
+
+                    <p:menubar>  
+                        <p:submenu label="Seguridad" icon="ui-icon-document">                               
+                            <p:menuitem value="Usuarios" url="usuario.xhtml" />  
+                            <p:menuitem value="Proveedores" url="proveedores.xhtml" />  
+                            <p:menuitem value="Clientes" url="clientes.xhtml" />                            
+                        </p:submenu>  
+
+                        <p:submenu label="Datos" icon="ui-icon-pencil">                            
+                                <p:submenu label="Compras" icon="ui-icon-contact">  
+                                    <p:menuitem value="Registrar Compra" url="registrarcompras.xhtml" />  
+                                    <p:menuitem value="Listar Compra" url="listarcompra.xhtml" /> 
+                                    <p:menuitem value="Cancelar Compra" url="cancelarcompra.xhtml" />
+                                </p:submenu> 
+                            
+                             <p:submenu label="Ventas" icon="ui-icon-contact">  
+                                    <p:menuitem value="Registrar Ventas" url="compras.xhtml" />  
+                                    <p:menuitem value="Listar Ventas" url="#" /> 
+                                    <p:menuitem value="Cancelar Ventas" url="#" />
+                                </p:submenu> 
+                            
+                            <p:menuitem value="Insumos" url="insumos.xhtml" icon="ui-icon-arrowreturnthick-1-e" />  
+                            <p:menuitem value="Articulos" url="articulos.xhtml" icon="ui-icon-arrowreturnthick-1-e" />  
+                            <p:menuitem value="Composiciones" url="composicion.xhtml" icon="ui-icon-arrowreturnthick-1-e" />  
+                            <p:menuitem value="Arqueos" url="arqueo.xhtml" icon="ui-icon-arrowreturnthick-1-e" />  
+                        </p:submenu>  
+
+                        <p:submenu label="Reportes" icon="ui-icon-help">  
+                            <p:menuitem value="Articulo" url="#" />  
+                            <p:menuitem value="Insumos" url="#" />  
+                            <p:menuitem value="Facturas" url="#" />  
+
+                        </p:submenu>  
+                        <p:menuitem value="Salir" actionListener="#" icon="ui-icon-close" oncomplete="handleLoginRequest(xhr, status, args)"/>
+
+                    </p:menubar>  
+
+                </h:form> 
+            </div>
+            <div id="content" class="center_content">
+                <ui:insert name="content"></ui:insert>
+            </div>
+            <div id="bottom" class="ui-widget-header ui-corner-all">
+                <ui:insert name="bottom">&copy;2013</ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>

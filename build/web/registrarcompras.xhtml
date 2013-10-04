@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/Template.xhtml">
+
+            <ui:define name="content">
+
+                <h:form>
+
+                    <p:panel header="Regitrar Compra" style="width:1000px;height:500px;"  >
+                        <h:panelGrid columns="2">
+                            Factura N°:
+                            <p:inputText  />
+                            Fecha :
+                            <p:calendar  id="popupButtonCal" showOn="button" /> 
+
+                        </h:panelGrid>
+
+                        <br/>
+                        <h:panelGrid columns="4" >
+                            Proveedor:                            
+                            <p:inputText style="width:200px;height:15px" />
+                            <p:commandButton id="btnProveedoresLista"  oncomplete="dialogProveedoresLista.show()" icon="ui-icon-document" title="ProveedoresLista" value="Buscar"/>  
+                        </h:panelGrid>
+
+                        <br/> 
+                        <h:form>  
+                            <p:commandButton id="btnInsumosCreate"  oncomplete="dialogInsumosCreate.show()" icon="ui-icon-document" title="IngresarInsumos" value="Insumos"/>  
+                        </h:form>
+
+                        <br/>
+                        <p:dataTable id="dataTable" var="car" >  
+
+                            <f:facet name="header">  
+                                Detalle Compra
+                            </f:facet>  
+
+                            <p:column>  
+                                <f:facet name="header">  
+                                    Insumos 
+                                </f:facet>  
+
+                                <h:outputText value="#{car.model}" />  
+
+                            </p:column>  
+
+                            <p:column headerText="Cantidad">  
+                                <h:outputText value="#{car.manufacturer}" />  
+                            </p:column>  
+
+                            <p:column headerText="Valor Unidad">  
+                                <h:outputText value="#{car.color}" />  
+                            </p:column>  
+
+                            <p:column headerText="Valor Total" >  
+                                <h:outputText value="#{car.year}" />  
+                            </p:column>  
+
+                            <p:column style="width:6%">                                                       
+                                <p:commandButton id="btnDelete" oncomplete="PF('carDialog').show()" icon="ui-icon-close" title="View">  
+                                    <f:setPropertyActionListener value="#" target="#" />  
+                                </p:commandButton>  
+                            </p:column>                             
+                        </p:dataTable>
+                        <br/>
+                        <h:panelGrid columns="2" >
+                            Valor :
+                            <p:inputText  />
+                            Descuento :
+                            <p:inputText  />
+                            Valor Total :
+                            <h:outputText  />
+
+                        </h:panelGrid>
+                        <br/><br/><br/><br/>
+                        <h:panelGrid columns="2">
+                            <p:commandButton id="btnguardarusuarioo" value="Guardar" actionListener="#{pprBean.savePerson}" icon="ui-icon-disk" />
+                            <p:commandButton type="reset" value="Cancelar" icon="ui-icon-arrowreturnthick-1-e" />
+                        </h:panelGrid>
+
+                    </p:panel>
+
+                    <h:form id="formCreate">
+                        <p:dialog header="Ingresar Insumos" widgetVar="dialogInsumosCreate" resizable="false" id="dlgInsumosCreate"  
+                                  showEffect="fade" hideEffect="explode" modal="true">  
+
+                            <h:panelGrid columns="5" >
+                                <h:panelGrid columns="2">
+                                    <p:panel  style="width:400px;height:160px">
+                                        <h:panelGrid columns="4">
+                                            <h:outputText value="Insumo:" />  
+                                            <p:inputText  />  
+                                            <h:outputText value="Valor Unidad:"  />  
+                                            <p:inputText style="width:80px;height:15px" /> 
+                                            <h:outputText value="Cantidad:" />  
+                                            <p:inputText style="width:40px;height:15px" />  
+                                            <h:outputText value="Valor Total:" />  
+                                            <p:inputText style="width:80px;height:15px" />  
+                                        </h:panelGrid>    
+                                        <h:panelGrid>
+                                            <p:column style="width:6%">                                
+                                                <p:commandButton id="btnguardarusuarioo" value="Agregar" actionListener="#{pprBean.savePerson}"    
+                                                                 icon="ui-icon-disk" /> 
+                                            </p:column> 
+                                        </h:panelGrid>
+                                    </p:panel>
+                                </h:panelGrid>
+
+                            </h:panelGrid>     
+                            <br/>
+                            <p:dataTable id="cars" var="car" paginator="true" rows="10">  
+
+                                <f:facet name="header">  
+                                    Lista de Insumos  
+                                </f:facet>  
+
+                                <p:column selectionMode="single" style="width:2%" />  
+
+                                <p:column headerText="Id" style="width:5%">  
+
+                                </p:column>  
+
+                                <p:column id="modelnombre" filterBy="#{car.model}"   
+                                          headerText="Nombre" style="width:18%" >  
+                                    <h:outputText value="#{car.model}" />  
+                                </p:column>   
+
+                                <p:column headerText="Unidad de Medida" style="width:18%">  
+
+                                </p:column>  
+
+                                <p:column headerText="Valor" style="width:18%">  
+
+                                </p:column>  
+
+                                <f:facet name="footer">  
+                                    <p:commandButton id="viewButton" value="View" icon="ui-icon-search"  
+                                                     oncomplete="PF('singleCarDialog').show()"/>  
+                                </f:facet>  
+                            </p:dataTable>  
+
+                        </p:dialog>  
+                    </h:form>
+                    
+                    <h:form>
+                         <p:dialog header="Lista Proveedores" widgetVar="dialogProveedoresLista" resizable="false" id="dlgProveedoresLista"  
+                                  showEffect="fade" hideEffect="explode" modal="true">
+                            <p:dataTable id="lisusuario" var="Proveedores" value="#" sortMode="multiple" rows="25" paginator="true">  
+                        <f:facet name="header">  
+                            Lista De Proveedores  
+                        </f:facet> 
+                          
+                            <p:outputPanel>  
+                                <h:outputText value="Buscar Proveedores:" />  
+                                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" />  
+                            </p:outputPanel>  
+                        
+
+                        <p:column id="modelnombre" filterBy="#{car.model}"   
+                                  headerText="Razon Social" >  
+                            <h:outputText value="#{car.model}" />  
+                        </p:column>   
+
+                        <p:column headerText="Nombre" >  
+                            <h:outputText  />  
+                        </p:column>  
+
+                        <p:column id="modelcedula" filterBy="#{car.model}"   
+                                  headerText="Nit" >  
+                            <h:outputText value="#{car.model}" />  
+                        </p:column>  
+
+                        <p:column headerText="Direccion" >  
+                            <h:outputText  />  
+                        </p:column>  
+
+                        <p:column headerText="Correo" >  
+                            <h:outputText  />  
+                        </p:column> 
+
+                        <p:column headerText="Telefono" >  
+                            <h:outputText  />  
+                        </p:column> 
+                        
+                    </p:dataTable> 
+                            
+                            
+                        </p:dialog>
+                        
+                    </h:form>
+                    
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

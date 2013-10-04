@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">>
+
+    <body>
+
+        <ui:composition template="./WEB-INF/Template.xhtml">
+
+            <ui:define name="content">
+             <p:growl id="msgs" showDetail="true" />  
+                <h:form>  
+                    <p:commandButton id="btnProveedoresCreate" update=":formCreate" oncomplete="dialogProveedoresCreate.show()" icon="ui-icon-document" title="Registrar" value="Registrar"/>  
+                </h:form>
+
+                <h:form id="formdatatable"> 
+                    <p:dataTable id="lisusuario" var="Proveedores" value="#" sortMode="multiple" rows="25" paginator="true">  
+                        <f:facet name="header">  
+                            Lista De Proveedores  
+                        </f:facet> 
+                          
+                            <p:outputPanel>  
+                                <h:outputText value="Buscar Proveedores:" />  
+                                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" />  
+                            </p:outputPanel>  
+                        
+
+                        <p:column id="modelnombre" filterBy="#{car.model}"   
+                                  headerText="Razon Social" >  
+                            <h:outputText value="#{car.model}" />  
+                        </p:column>   
+
+                        <p:column headerText="Nombre" >  
+                            <h:outputText  />  
+                        </p:column>  
+
+                        <p:column id="modelcedula" filterBy="#{car.model}"   
+                                  headerText="Nit" >  
+                            <h:outputText value="#{car.model}" />  
+                        </p:column>  
+
+                        <p:column headerText="Direccion" >  
+                            <h:outputText  />  
+                        </p:column>  
+
+                        <p:column headerText="Correo" >  
+                            <h:outputText  />  
+                        </p:column> 
+
+                        <p:column headerText="Telefono" >  
+                            <h:outputText  />  
+                        </p:column> 
+                        
+                        <p:column style="width:6%">  
+                            <p:commandButton id="btnUpdate"  oncomplete="PF('carDialog').show()" icon="ui-icon-pencil" title="View">  
+                                <f:setPropertyActionListener value="#" target="#}" />  
+                            </p:commandButton>                              
+                            <p:commandButton id="btnDelete" update=":formDelete" oncomplete="PF('carDialog').show()" icon="ui-icon-close" title="View">  
+                                <f:setPropertyActionListener value="#" target="#" />  
+                            </p:commandButton>  
+                        </p:column>  
+
+                    </p:dataTable> 
+                </h:form>
+
+                <h:form id="formCreate">
+                    <p:dialog header="Crear Proveedores" widgetVar="dialogProveedoresCreate" resizable="false" id="dlgProveedoresCreate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+
+                        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Razon Social:" />  
+                            <p:inputText  />  
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText  />  
+
+
+                            <h:outputText value="Nit:" />  
+                            <p:inputText />  
+
+                            <h:outputText value="Direccion:" />  
+                            <p:inputText  />  
+
+                            <h:outputText value="Correo:" />  
+                            <p:inputText />  
+
+                            <h:outputText value="Telefono:" />  
+                            <p:inputText  /> 
+
+                            <p:column style="width:6%">                                
+                                <p:commandButton id="btnguardarusuarioo" value="Guardar" actionListener="#{pprBean.savePerson}"    
+                                                 icon="ui-icon-disk" /> 
+                            </p:column>  
+
+                        </h:panelGrid>  
+
+                    </p:dialog>  
+                </h:form>  
+
+                <h:form id="formDelete">
+                    <p:confirmDialog showEffect="fade" hideEffect="explode" message="Quiere Eliminar Este Usuario?" header="Eliminar Usuario" severity="alert"
+                                     widgetVar="dialogUsuarioDelete">  
+                        <p:commandButton id="confirmar"  value="Aceptar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" oncomplete="dialogUsuarioDelete.hide()" update=":msgs"
+                                         actionListener="#{usuarioBean.btnDeleteUsuario}"/>  
+                        <p:commandButton id="decline"  value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="dialogUsuarioDelete.hide()"/>       
+                    </p:confirmDialog>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
