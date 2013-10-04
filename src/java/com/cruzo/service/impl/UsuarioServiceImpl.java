@@ -19,9 +19,10 @@ import javax.ejb.Stateless;
 @Stateless
 public class UsuarioServiceImpl implements IUsuarioService {
 
+    @Override
         public Usuario login(Usuario usuario) {
         System.out.println("login en EJB");
-        if (usuario.getUser().trim().equalsIgnoreCase("admin") && usuario.getPass().equals("12345")) {
+        if (usuario.getUser().trim().equals("admin") && usuario.getPass().equals("12345")) {
             return usuario;
         }
         return null;
