@@ -14,23 +14,35 @@
 
                 <h:form>
 
-                    <p:panel header="Regitrar Compra" style="width:1000px;height:520px;"  >
-                        <h:panelGrid columns="2">
-                            Factura N°:
-                            <p:inputText  />
-                            Fecha :
-                            <p:calendar  id="popupButtonCal" showOn="button" /> 
+                    <p:panel header="Regitrar Compra" style="width:1000px;height:600px;"  >
+                        <h:panelGrid columns="20">
+                        <p:panel header="Datos de la Factura" style="width:320px;height:140px" >
+                            <h:panelGrid columns="2">
+                                Factura N°:
+                                <p:inputText  />
+                                Fecha :
+                                <p:calendar  id="popupButtonCal" showOn="button" /> 
 
-                        </h:panelGrid>
+                            </h:panelGrid>
+                        </p:panel>
 
                         <br/>
-                        <h:panelGrid columns="4" >
-                            Proveedor:                            
-                            <p:inputText style="width:200px;height:15px" />
-                            <p:commandButton id="btnProveedoresLista"  oncomplete="dialogProveedoresLista.show()" icon="ui-icon-document" title="ProveedoresLista" value="Buscar"/>  
+                        
+                            <p:panel header="Datos del Proveedor" style="width:320px;height:140px" >
+                                <h:panelGrid columns="2" >
+                                    Proveedor:                            
+                                    <p:inputText style="width:200px;height:15px" />
+                                    Nit:                            
+                                    <p:inputText style="width:200px;height:15px" />
+                                    <p:commandButton id="btnProveedoresLista"  oncomplete="dialogProveedoresLista.show()" icon="ui-icon-document" title="ProveedoresLista" value="Buscar"/>  
+                                </h:panelGrid>
+                            </p:panel>
+                        
+                        <h:panelGrid columns="1">
+                            <img src="logocruzoII.png"/>
                         </h:panelGrid>
-
-                        <br/> 
+                        </h:panelGrid>
+                     
                         <h:form>  
                             <p:commandButton id="btnInsumosCreate"  oncomplete="dialogInsumosCreate.show()" icon="ui-icon-document" title="IngresarInsumos" value="Insumos"/>  
                         </h:form>
@@ -148,54 +160,54 @@
 
                         </p:dialog>  
                     </h:form>
-                    
+
                     <h:form>
-                         <p:dialog header="Lista Proveedores" widgetVar="dialogProveedoresLista" resizable="false" id="dlgProveedoresLista"  
+                        <p:dialog header="Lista Proveedores" widgetVar="dialogProveedoresLista" resizable="false" id="dlgProveedoresLista"  
                                   showEffect="fade" hideEffect="explode" modal="true">
                             <p:dataTable id="lisusuario" var="Proveedores" value="#" sortMode="multiple" rows="25" paginator="true">  
-                        <f:facet name="header">  
-                            Lista De Proveedores  
-                        </f:facet> 
-                          
-                            <p:outputPanel>  
-                                <h:outputText value="Buscar Proveedores:" />  
-                                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" />  
-                            </p:outputPanel>  
-                        
+                                <f:facet name="header">  
+                                    Lista De Proveedores  
+                                </f:facet> 
 
-                        <p:column id="modelnombre" filterBy="#{car.model}"   
-                                  headerText="Razon Social" >  
-                            <h:outputText value="#{car.model}" />  
-                        </p:column>   
+                                <p:outputPanel>  
+                                    <h:outputText value="Buscar Proveedores:" />  
+                                    <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" />  
+                                </p:outputPanel>  
 
-                        <p:column headerText="Nombre" >  
-                            <h:outputText  />  
-                        </p:column>  
 
-                        <p:column id="modelcedula" filterBy="#{car.model}"   
-                                  headerText="Nit" >  
-                            <h:outputText value="#{car.model}" />  
-                        </p:column>  
+                                <p:column id="modelnombre" filterBy="#{car.model}"   
+                                          headerText="Razon Social" >  
+                                    <h:outputText value="#{car.model}" />  
+                                </p:column>   
 
-                        <p:column headerText="Direccion" >  
-                            <h:outputText  />  
-                        </p:column>  
+                                <p:column headerText="Nombre" >  
+                                    <h:outputText  />  
+                                </p:column>  
 
-                        <p:column headerText="Correo" >  
-                            <h:outputText  />  
-                        </p:column> 
+                                <p:column id="modelcedula" filterBy="#{car.model}"   
+                                          headerText="Nit" >  
+                                    <h:outputText value="#{car.model}" />  
+                                </p:column>  
 
-                        <p:column headerText="Telefono" >  
-                            <h:outputText  />  
-                        </p:column> 
-                        
-                    </p:dataTable> 
-                            
-                            
+                                <p:column headerText="Direccion" >  
+                                    <h:outputText  />  
+                                </p:column>  
+
+                                <p:column headerText="Correo" >  
+                                    <h:outputText  />  
+                                </p:column> 
+
+                                <p:column headerText="Telefono" >  
+                                    <h:outputText  />  
+                                </p:column> 
+
+                            </p:dataTable> 
+
+
                         </p:dialog>
-                        
+
                     </h:form>
-                    
+
 
                 </h:form>
             </ui:define>
