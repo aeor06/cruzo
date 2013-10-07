@@ -16,18 +16,18 @@
 
                     <p:panel header="Regitrar Compra" style="width:1000px;height:600px;"  >
                         <h:panelGrid columns="20">
-                        <p:panel header="Datos de la Factura" style="width:320px;height:140px" >
-                            <h:panelGrid columns="2">
-                                Factura N°:
-                                <p:inputText  />
-                                Fecha :
-                                <p:calendar  id="popupButtonCal" showOn="button" /> 
+                            <p:panel header="Datos de la Factura" style="width:320px;height:140px" >
+                                <h:panelGrid columns="2">
+                                    Factura N°:
+                                    <p:inputText  />
+                                    Fecha :
+                                    <p:calendar  id="popupButtonCal" showOn="button" /> 
 
-                            </h:panelGrid>
-                        </p:panel>
+                                </h:panelGrid>
+                            </p:panel>
 
-                        <br/>
-                        
+                            <br/>
+
                             <p:panel header="Datos del Proveedor" style="width:320px;height:140px" >
                                 <h:panelGrid columns="2" >
                                     Proveedor:                            
@@ -37,12 +37,12 @@
                                     <p:commandButton id="btnProveedoresLista"  oncomplete="dialogProveedoresLista.show()" icon="ui-icon-document" title="ProveedoresLista" value="Buscar"/>  
                                 </h:panelGrid>
                             </p:panel>
-                        
-                        <h:panelGrid columns="1">
-                            <img src="logocruzoII.png"/>
+
+                            <h:panelGrid columns="1">
+                                <img src="logocruzoII.png"/>
+                            </h:panelGrid>
                         </h:panelGrid>
-                        </h:panelGrid>
-                     
+
                         <h:form>  
                             <p:commandButton id="btnInsumosCreate"  oncomplete="dialogInsumosCreate.show()" icon="ui-icon-document" title="IngresarInsumos" value="Insumos"/>  
                         </h:form>

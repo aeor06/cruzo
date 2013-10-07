@@ -11,7 +11,7 @@
         <ui:composition template="./WEB-INF/Template.xhtml">
 
             <ui:define name="content">
-             <p:growl id="msgs" showDetail="true" />  
+                <p:growl id="msgs" showDetail="true" />  
                 <h:form>  
                     <p:commandButton id="btnProveedoresCreate" update=":formCreate" oncomplete="dialogProveedoresCreate.show()" icon="ui-icon-document" title="Registrar" value="Registrar"/>  
                 </h:form>
@@ -21,23 +21,23 @@
                         <f:facet name="header">  
                             Lista De Proveedores  
                         </f:facet> 
-                          
-                            <p:outputPanel>  
-                                <h:outputText value="Buscar Proveedores:" />  
-                                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" />  
-                            </p:outputPanel>  
-                        
+
+                        <p:outputPanel>  
+                            <h:outputText value="Buscar Proveedores:" />  
+                            <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" />  
+                        </p:outputPanel>  
+
 
                         <p:column id="modelnombre" filterBy="#{car.model}"   
                                   headerText="Razon Social" >  
                             <h:outputText value="#{car.model}" />  
                         </p:column>   
 
-                        <p:column headerText="Nombre" >  
+                        <p:column headerText="Razon Social" >  
                             <h:outputText  />  
                         </p:column>  
 
-                        <p:column id="modelcedula" filterBy="#{car.model}"   
+                        <p:column id="modelnit" filterBy="#{car.model}"   
                                   headerText="Nit" >  
                             <h:outputText value="#{car.model}" />  
                         </p:column>  
@@ -53,8 +53,21 @@
                         <p:column headerText="Telefono" >  
                             <h:outputText  />  
                         </p:column> 
-                        
-                        <p:column style="width:6%">  
+
+                        <p:column id="modelcedula" filterBy="#{car.model}"   
+                                  headerText="Cedula" >  
+                            <h:outputText value="#{car.model}" />  
+                        </p:column>  
+
+                        <p:column headerText="Nombres" >  
+                            <h:outputText  /> 
+                        </p:column> 
+
+                        <p:column headerText="Apellidos" >  
+                            <h:outputText  />  
+                        </p:column> 
+
+                        <p:column style="width:9%">  
                             <p:commandButton id="btnUpdate"  oncomplete="PF('carDialog').show()" icon="ui-icon-pencil" title="View">  
                                 <f:setPropertyActionListener value="#" target="#}" />  
                             </p:commandButton>                              
@@ -69,35 +82,59 @@
                 <h:form id="formCreate">
                     <p:dialog header="Crear Proveedores" widgetVar="dialogProveedoresCreate" resizable="false" id="dlgProveedoresCreate"  
                               showEffect="fade" hideEffect="explode" modal="true">  
-
-                        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
-
-                            <h:outputText value="Razon Social:" />  
-                            <p:inputText  />  
-
-                            <h:outputText value="Nombre:" />  
-                            <p:inputText  />  
-
-
-                            <h:outputText value="Nit:" />  
-                            <p:inputText />  
-
-                            <h:outputText value="Direccion:" />  
-                            <p:inputText  />  
-
-                            <h:outputText value="Correo:" />  
-                            <p:inputText />  
-
-                            <h:outputText value="Telefono:" />  
-                            <p:inputText  /> 
+  
+                            <h:panelGrid columns="5" >
+                                <h:panelGrid columns="2">
+                                    <p:panel header="Datos de la Empresa" style="width:330px;height:200px">
+                                        <h:panelGrid columns="2">
+                                            Razon Social:
+                                            <p:inputText value="#" style="width:200px;height:15px"/>
+                                             Nit:
+                                            <p:inputText value="#" style="width:150px;height:15px"/>
+                                            Direccion:
+                                            <p:inputText value="#" style="width:200px;height:15px"/>
+                                             Telefono:
+                                            <p:inputText value="#" style="width:200px;height:15px"/>
+                                             Correo:
+                                            <p:inputText value="#" style="width:200px;height:15px"/>
+                                        </h:panelGrid>
+                                    </p:panel>
+                                </h:panelGrid>
+                                <h:panelGrid columns="1">
+                                    <img src="logocruzo.png"/>
+                                </h:panelGrid>
+                            </h:panelGrid> 
+                            <h:panelGrid columns="5" >
+                                <h:panelGrid columns="1">
+                                    <img src="logocruzoII.png"/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2">
+                                    <p:panel header="Datos del Representante Legal" style="width:330px;height:200px">
+                                        <h:panelGrid columns="2">
+                                            Cedula:
+                                            <p:inputText value="#" style="width:150px;height:15px"/>
+                                             Nombres:
+                                            <p:inputText value="#" style="width:150px;height:15px"/>
+                                            Apellidos:
+                                            <p:inputText value="#" style="width:200px;height:15px"/>
+                                             Telefono:
+                                            <p:inputText value="#" style="width:200px;height:15px"/>
+                                             Correo:
+                                            <p:inputText value="#" style="width:200px;height:15px"/>
+                                        </h:panelGrid>
+                                    </p:panel>
+                                </h:panelGrid>
+                                
+                            </h:panelGrid>  
+                            
 
                             <p:column style="width:6%">                                
-                                <p:commandButton id="btnguardarusuarioo" value="Guardar" actionListener="#{pprBean.savePerson}"    
+                                <p:commandButton id="btnguardaproveedor" value="Guardar" actionListener="#{pprBean.savePerson}"    
                                                  icon="ui-icon-disk" /> 
+                                <p:commandButton type="reset" value="Cancelar" icon="ui-icon-arrowreturnthick-1-e" />
                             </p:column>  
 
-                        </h:panelGrid>  
-
+                        
                     </p:dialog>  
                 </h:form>  
 
@@ -110,6 +147,7 @@
                     </p:confirmDialog>
 
                 </h:form>
+
             </ui:define>
 
         </ui:composition>
