@@ -6,12 +6,13 @@
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Facelet Title</title>
-        <link href="resources/css/login.css" type="text/javascript" rel="stylesheet"/>
+       
     </h:head>
     <h:body>
+        
         <div class="conteiner">
-            <h:form id="formlogin"> 
-                <p:panel header="Ingresar Usuario y Clave">
+            <h:form id="formlogin" > 
+                <p:panel header="Ingresar Usuario y Clave" style="width:330px;height:190px">
                     <p:growl id="growl" showDetail="true"/>
                     <h:panelGrid columns="2" cellpadding="5">  
                         <h:outputLabel for="username" value="Usuario:" />  
@@ -28,20 +29,11 @@
                                              oncomplete="handleLoginRequest(xhr, status, args)"/>  
                         </f:facet> 
                     </h:panelGrid> 
+                    
                 </p:panel>  
             </h:form>
         </div>
-        <script type="text/javascript">  
-            function handleLoginRequest(xhr, status, args) {  
-                if(args.validationFailed || !args.loggedIn) {  
-                    jQuery('#formlogin').effect("shake", { times:3 }, 100);  
-                }   
-                else {  
-                    location.href = args.ruta;
-                    
-                }  
-            }  
-        </script>  
+       
     </h:body>
 </html>
 

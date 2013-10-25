@@ -6,7 +6,7 @@ package com.cruzo.beans;
 
 
 import com.cruzo.entitys.Usuario;
-import com.cruzo.interfaces.IUsuarioService;
+import com.cruzo.service.IUsuarioService;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

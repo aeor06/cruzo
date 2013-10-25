@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/Template.xhtml">
+
+            <ui:define name="content">                
+                <h:form>  
+                    <p:commandButton id="btnUsuarioCreate" update=":formCreate" oncomplete="dialogUsuarioCreate.show()" icon="ui-icon-document" title="Crear" value="Registrar"/>  
+                </h:form>
+                <h:form id="formdatatable"> 
+                    <p:dataTable id="lisusuario" var="usuario" value="#{usuarioBean.listUsuario}" sortMode="multiple" rows="25" paginator="true">  
+                        <f:facet name="header">  
+                            Lista De Usuarios  
+                        </f:facet> 
+                          
+                            <p:outputPanel>  
+                                <h:outputText value="Buscar Usuario:" />  
+                                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" />  
+                            </p:outputPanel>  
+                        
+
+                        <p:column id="modelnombre" filterBy="#{usuario.nombres}"   
+                                  headerText="Nombres" >  
+                            <h:outputText value="#{usuario.nombres}" />  
+                        </p:column>   
+
+                        <p:column headerText="Apellidos" >  
+                            <h:outputText value="#{usuario.apellidos}" />  
+                        </p:column>  
+
+                        <p:column id="modelcedula" filterBy="#{usuario.identificacion}"   
+                                  headerText="Cedula" >  
+                            <h:outputText value="#{usuario.identificacion}" />  
+                        </p:column>  
+
+                        <p:column headerText="Usuario" >  
+                            <h:outputText  value="#{usuario.user}"/>  
+                        </p:column>  
+
+                        <p:column headerText="Contraseña" >  
+                            <h:outputText value="#{usuario.pass}" />  
+                        </p:column> 
+
+                        <p:column headerText="Perfil" >  
+                            <h:outputText value="#{usuario.perfil}" />  
+                        </p:column> 
+                        
+
+                        <p:column style="width:6%">  
+                            <p:commandButton id="btnUpdate"  oncomplete="PF('carDialog').show()" icon="ui-icon-pencil" title="View">  
+                                <f:setPropertyActionListener value="#" target="#}" />  
+                            </p:commandButton>                              
+                            <p:commandButton id="btnDelete" update=":formDelete" oncomplete="PF('carDialog').show()" icon="ui-icon-close" title="View">  
+                                <f:setPropertyActionListener value="#" target="#" />  
+                            </p:commandButton>  
+                        </p:column>  
+
+                    </p:dataTable> 
+                </h:form>
+
+                <h:form id="formCreate">
+                    <p:dialog header="Crear Usuario"  widgetVar="dialogUsuarioCreate" resizable="false" id="dlgUsuarioCreate"  
+                              showEffect="fade" hideEffect="explode" modal="true">
+                    <h:panelGrid columns="5" >
+                        <h:panelGrid columns="2">
+                        <p:panel header="Datos Personales" style="width:330px;height:130px">
+                            <h:panelGrid columns="2">
+                                Identificacion
+                                <p:inputText value="#{usuarioBean.usuario.identificacion}" style="width:100px;height:15px"/>
+                                Nombres
+                                <p:inputText value="#{usuarioBean.usuario.nombres}" style="width:150px;height:15px"/>
+                                Apellidos
+                                <p:inputText value="#{usuarioBean.usuario.apellidos}" style="width:200px;height:15px"/>
+                            </h:panelGrid>
+                        </p:panel>
+                        </h:panelGrid>
+                        <h:panelGrid columns="1">
+                            <img src="logocruzo.png"/>
+                        </h:panelGrid>
+                    </h:panelGrid>        
+                    <h:panelGrid columns="20" >
+                        <h:panelGrid columns="1">
+                            <p:panel header="Datos del Sistema" style="width:320px;height:140px" >
+                                <h:panelGrid columns="2"   >
+                                    Usuario
+                                    <p:inputText value="#{usuarioBean.usuario.user}" style="width:100px;height:18px"/>
+                                    Digite Contraseña
+                                    <p:password id="turkishFeedback" feedback="true"   
+                                                promptLabel="Contraseña" weakLabel="Bajo"  
+                                                goodLabel="Medio" strongLabel="Alto" value="#{usuarioBean.usuario.pass}" />
+                                    Confirmar Contrasena
+                                    <p:password id="turkishFeedback1" feedback="true"   
+                                                promptLabel="Contraseña" weakLabel="Bajo"  
+                                                goodLabel="Medio" strongLabel="Alto" value="#{usuarioBean.usuario.pass}" />
+                                </h:panelGrid>
+                            </p:panel>
+                        </h:panelGrid>    
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1">
+                            <p:panel header="Acceso y Activacion" style="width:200px;height:140px" >
+                                <h:outputLabel value="Perfil " />  
+                                <h:selectOneMenu id="city3" value="#{usuarioBean.usuario.perfil}" required="true">
+                                    <f:selectItem itemLabel="" itemValue="" />  
+                                    <f:selectItem itemLabel="Administración" itemValue="Administración" />  
+                                    <f:selectItem itemLabel="Sistemas" itemValue="Sistemas" />
+                                    <f:selectItem itemLabel="Gerencia" itemValue="Gerencia" />  
+                                    <f:selectItem itemLabel="Producción" itemValue="Producción" />  
+                                    <f:selectItem itemLabel="Financiero" itemValue="Financiero" />
+                                    <f:selectItem itemLabel="Prensa" itemValue="Prensa" />
+                                </h:selectOneMenu>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <h:outputText value="Activo " />  
+                                <p:selectBooleanCheckbox value="" />
+                           </p:panel>     
+                        </h:panelGrid>
+                        <h:panelGrid columns="1">
+                            <img src="logocruzoII.png"/>
+                        </h:panelGrid>
+                    </h:panelGrid>    
+                    <br/>
+                    <h:panelGrid columns="32" >
+                        <h:panelGrid columns="2">
+                            <p:commandButton id="btnguardarusuarioo" value="Guardar" actionListener="#{usuarioBean.registrar()}" icon="ui-icon-disk" />
+                            <p:commandButton type="reset" value="Cancelar" icon="ui-icon-arrowreturnthick-1-e" />
+                        </h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                        <h:panelGrid columns="1"></h:panelGrid>
+                    </h:panelGrid>
+                 
+                    </p:dialog>     
+                </h:form>  
+                    
+                <h:form id="formDelete">
+                    <p:confirmDialog  showEffect="fade" hideEffect="explode" message="Quiere Eliminar Este Usuario?" header="Eliminar Usuario" severity="alert"
+                                     widgetVar="dialogUsuarioDelete">  
+                        <p:commandButton id="confirmar"  value="Aceptar" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" oncomplete="dialogUsuarioDelete.hide()" update=":msgs"
+                                         actionListener="#{usuarioBean.btnDeleteUsuario}"/>  
+                        <p:commandButton id="decline"  value="Cancelar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" onclick="dialogUsuarioDelete.hide()"/>       
+                    </p:confirmDialog>
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
